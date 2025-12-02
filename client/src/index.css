@@ -1,0 +1,256 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Roboto', sans-serif;
+
+  --color-brand-main: #F66767;
+  --color-brand-dark: #262424;
+  --color-brand-text: #5F6368;
+  --color-brand-white: #FFFFFF;
+  --color-brand-light: #FFF5F5;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Original Brand Colors Mapped to Shadcn Variables */
+  --background: #f9fafb;
+  --foreground: #5F6368;
+  
+  --card: #FFFFFF;
+  --card-foreground: #5F6368;
+  
+  --popover: #FFFFFF;
+  --popover-foreground: #5F6368;
+  
+  --primary: #F66767;
+  --primary-foreground: #FFFFFF;
+  
+  --secondary: #FFF5F5;
+  --secondary-foreground: #F66767;
+  
+  --muted: #f3f4f6;
+  --muted-foreground: #9ca3af;
+  
+  --accent: #FFF5F5;
+  --accent-foreground: #F66767;
+  
+  --destructive: #ef4444;
+  --destructive-foreground: #FFFFFF;
+  
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #F66767;
+  
+  --radius: 0.5rem;
+
+  --chart-1: #F66767;
+  --chart-2: #262424;
+  --chart-3: #5F6368;
+  --chart-4: #FFF5F5;
+  --chart-5: #e5e7eb;
+
+  --sidebar: #F66767;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFFFFF;
+  --sidebar-primary-foreground: #F66767;
+  --sidebar-accent: #e05555;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #e05555;
+  --sidebar-ring: #FFFFFF;
+}
+
+.dark {
+  /* Dark mode is not in the original spec, but providing reasonable defaults just in case */
+  --background: #262424;
+  --foreground: #f9fafb;
+  
+  --card: #1f1f1f;
+  --card-foreground: #f9fafb;
+  
+  --popover: #1f1f1f;
+  --popover-foreground: #f9fafb;
+  
+  --primary: #F66767;
+  --primary-foreground: #FFFFFF;
+  
+  --secondary: #333333;
+  --secondary-foreground: #F66767;
+  
+  --muted: #333333;
+  --muted-foreground: #9ca3af;
+  
+  --accent: #333333;
+  --accent-foreground: #F66767;
+  
+  --destructive: #7f1d1d;
+  --destructive-foreground: #f9fafb;
+  
+  --border: #333333;
+  --input: #333333;
+  --ring: #F66767;
+  
+  --sidebar: #1f1f1f;
+  --sidebar-foreground: #f9fafb;
+  --sidebar-primary: #F66767;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #333333;
+  --sidebar-accent-foreground: #f9fafb;
+  --sidebar-border: #333333;
+  --sidebar-ring: #F66767;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    /* Spotlight variables default */
+    --x: 50%;
+    --y: 50%;
+  }
+  
+  /* Ink/Spotlight Effect */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(600px circle at var(--x) var(--y), rgba(246, 103, 103, 0.08), transparent 40%);
+    z-index: 9999;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+  
+  /* Custom Animations from Original */
+  @keyframes unlock {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); opacity: 0; }
+  }
+
+  .animate-unlock {
+    animation: unlock 0.8s ease-in-out forwards;
+  }
+  
+  @keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-wave {
+    animation: wave 0.6s ease-in-out;
+  }
+  
+  /* Editor Styles */
+  .editor-container {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+  }
+  .editor-container:focus-within {
+    box-shadow: 0 8px 30px rgba(246, 103, 103, 0.15);
+    border-color: #F66767;
+  }
+  
+  /* Feature Card Animation */
+  .feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(246, 103, 103, 0.1);
+  }
+  
+  /* Placeholder for contenteditable div */
+  [contenteditable][placeholder]:empty:before {
+    content: attr(placeholder);
+    pointer-events: none;
+    display: block;
+    color: #a0aec0;
+  }
+}
