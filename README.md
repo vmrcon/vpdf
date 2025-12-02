@@ -146,4 +146,4 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ---
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️ by João Leite**
